@@ -1,25 +1,47 @@
-# TorchCode
+<div align="center">
 
-**Crack the PyTorch interview.** Practice implementing operators and architectures from scratch — the exact skills top ML teams test for.
+# 🔥 TorchCode
 
-> Like LeetCode, but for tensors. Self-hosted. Jupyter-based. Instant feedback.
+**Crack the PyTorch interview.**
 
-## Why TorchCode?
+Practice implementing operators and architectures from scratch — the exact skills top ML teams test for.
+
+*Like LeetCode, but for tensors. Self-hosted. Jupyter-based. Instant feedback.*
+
+[![PyTorch](https://img.shields.io/badge/PyTorch-ee4c2c?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com)
+[![Python](https://img.shields.io/badge/Python_3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+
+[![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-TorchCode-blue?style=flat-square&logo=github)](https://ghcr.io/duoan/torchcode)
+![Problems](https://img.shields.io/badge/problems-13-orange?style=flat-square)
+![GPU](https://img.shields.io/badge/GPU-not%20required-brightgreen?style=flat-square)
+
+</div>
+
+---
+
+## 🎯 Why TorchCode?
 
 Top companies (Meta, Google DeepMind, OpenAI, etc.) expect ML engineers to implement core operations **from memory on a whiteboard**. Reading papers isn't enough — you need to write `softmax`, `LayerNorm`, `MultiHeadAttention`, and full Transformer blocks cold.
 
 TorchCode gives you a **structured practice environment** with:
 
-- **13 curated problems** covering the most frequently asked PyTorch interview topics
-- **Automated judge** with correctness checks, gradient verification, and timing
-- **Instant feedback** — colored pass/fail per test case, just like competitive programming
-- **Hints when stuck** — nudges without full spoilers
-- **Reference solutions** — study optimal implementations after your attempt
-- **Progress tracking** — see what you've solved, your best times, and attempt counts
+| | Feature | |
+|---|---|---|
+| 🧩 | **13 curated problems** | The most frequently asked PyTorch interview topics |
+| ⚖️ | **Automated judge** | Correctness checks, gradient verification, and timing |
+| 🎨 | **Instant feedback** | Colored pass/fail per test case, just like competitive programming |
+| 💡 | **Hints when stuck** | Nudges without full spoilers |
+| 📖 | **Reference solutions** | Study optimal implementations after your attempt |
+| 📊 | **Progress tracking** | What you've solved, best times, and attempt counts |
 
 No cloud. No signup. No GPU needed. Just `make run`.
 
-## Quick Start
+---
+
+## 🚀 Quick Start
 
 ### Option 1 — Pull the pre-built image (fastest)
 
@@ -33,54 +55,58 @@ docker run -p 8888:8888 ghcr.io/duoan/torchcode:latest
 make run
 ```
 
-Open **http://localhost:8888** — that's it. Works with both Docker and Podman (auto-detected).
+Open **<http://localhost:8888>** — that's it. Works with both Docker and Podman (auto-detected).
 
-## Problem Set
+---
 
-### Fundamentals — "Implement X from scratch"
+## 📋 Problem Set
+
+### 🧱 Fundamentals — "Implement X from scratch"
 
 The bread and butter of ML coding interviews. You'll be asked to write these without `torch.nn`.
 
 | # | Problem | What You'll Implement | Difficulty | Key Concepts |
-|---|---------|----------------------|------------|--------------|
-| 1 | ReLU | `relu(x)` | Easy | Activation functions, element-wise ops |
-| 2 | Softmax | `my_softmax(x, dim)` | Easy | Numerical stability, exp/log tricks |
-| 3 | Linear Layer | `SimpleLinear` (nn.Module) | Medium | `y = xW^T + b`, Kaiming init, `nn.Parameter` |
-| 4 | LayerNorm | `my_layer_norm(x, gamma, beta)` | Medium | Normalization, running stats, affine transform |
-| 7 | BatchNorm | `my_batch_norm(x, gamma, beta)` | Medium | Batch vs layer statistics, train/eval behavior |
-| 8 | RMSNorm | `rms_norm(x, weight)` | Medium | LLaMA-style norm, simpler than LayerNorm |
+|:---:|---------|----------------------|:----------:|--------------|
+| 1 | ReLU | `relu(x)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | Activation functions, element-wise ops |
+| 2 | Softmax | `my_softmax(x, dim)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | Numerical stability, exp/log tricks |
+| 3 | Linear Layer | `SimpleLinear` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | `y = xW^T + b`, Kaiming init, `nn.Parameter` |
+| 4 | LayerNorm | `my_layer_norm(x, γ, β)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | Normalization, running stats, affine transform |
+| 7 | BatchNorm | `my_batch_norm(x, γ, β)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | Batch vs layer statistics, train/eval behavior |
+| 8 | RMSNorm | `rms_norm(x, weight)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | LLaMA-style norm, simpler than LayerNorm |
 
-### Attention Mechanisms — The heart of modern ML interviews
+### 🧠 Attention Mechanisms — The heart of modern ML interviews
 
 If you're interviewing for any role touching LLMs or Transformers, expect at least one of these.
 
 | # | Problem | What You'll Implement | Difficulty | Key Concepts |
-|---|---------|----------------------|------------|--------------|
-| 5 | Scaled Dot-Product Attention | `scaled_dot_product_attention(Q, K, V)` | Hard | `softmax(QK^T/√d_k)V`, the foundation of everything |
-| 6 | Multi-Head Attention | `MultiHeadAttention` (nn.Module) | Hard | Parallel heads, split/concat, projection matrices |
-| 9 | Causal Self-Attention | `causal_attention(Q, K, V)` | Hard | Autoregressive masking with `-inf`, GPT-style |
-| 10 | Grouped Query Attention | `GroupQueryAttention` (nn.Module) | Hard | GQA (LLaMA 2), KV sharing across heads |
-| 11 | Sliding Window Attention | `sliding_window_attention(Q, K, V, w)` | Hard | Mistral-style local attention, O(n·w) complexity |
-| 12 | Linear Attention | `linear_attention(Q, K, V)` | Hard | Kernel trick, `φ(Q)(φ(K)^TV)`, O(n·d²) |
+|:---:|---------|----------------------|:----------:|--------------|
+| 5 | Scaled Dot-Product Attention | `scaled_dot_product_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | `softmax(QK^T/√d_k)V`, the foundation of everything |
+| 6 | Multi-Head Attention | `MultiHeadAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Parallel heads, split/concat, projection matrices |
+| 9 | Causal Self-Attention | `causal_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Autoregressive masking with `-inf`, GPT-style |
+| 10 | Grouped Query Attention | `GroupQueryAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | GQA (LLaMA 2), KV sharing across heads |
+| 11 | Sliding Window Attention | `sliding_window_attention(Q, K, V, w)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Mistral-style local attention, O(n·w) complexity |
+| 12 | Linear Attention | `linear_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Kernel trick, `φ(Q)(φ(K)^TV)`, O(n·d²) |
 
-### Full Architecture — Put it all together
+### 🏗️ Full Architecture — Put it all together
 
 | # | Problem | What You'll Implement | Difficulty | Key Concepts |
-|---|---------|----------------------|------------|--------------|
-| 13 | GPT-2 Block | `GPT2Block` (nn.Module) | Hard | Pre-norm, causal MHA + MLP (4x, GELU), residual connections |
+|:---:|---------|----------------------|:----------:|--------------|
+| 13 | GPT-2 Block | `GPT2Block` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Pre-norm, causal MHA + MLP (4x, GELU), residual connections |
 
-## How It Works
+---
+
+## ⚙️ How It Works
 
 Each problem has **two** notebooks:
 
 | File | Purpose |
 |------|---------|
-| `01_relu.ipynb` | Blank template — write your code here |
-| `01_relu_solution.ipynb` | Reference solution — check when stuck |
+| `01_relu.ipynb` | ✏️ Blank template — write your code here |
+| `01_relu_solution.ipynb` | 📖 Reference solution — check when stuck |
 
 ### Workflow
 
-```
+```text
 1. Open a blank notebook           →  Read the problem description
 2. Implement your solution         →  Use only basic PyTorch ops
 3. Debug freely                    →  print(x.shape), check gradients, etc.
@@ -100,46 +126,43 @@ hint("causal_attention")    # Get a hint without full spoiler
 status()                    # Progress dashboard — solved / attempted / todo
 ```
 
-## Suggested Study Plan
+---
 
-**Week 1 — Foundations** (warm-up, 1–2 hours)
-- Day 1: ReLU, Softmax
-- Day 2: Linear Layer
-- Day 3: LayerNorm, BatchNorm, RMSNorm
+## 📅 Suggested Study Plan
 
-**Week 2 — Attention Deep Dive** (interview-critical, 3–4 hours)
-- Day 1: Scaled Dot-Product Attention
-- Day 2: Multi-Head Attention
-- Day 3: Causal Self-Attention
-- Day 4: GQA, Sliding Window, Linear Attention
+> **Total: ~6–8 hours spread across 2–3 weeks. Perfect for interview prep on a deadline.**
 
-**Week 3 — Integration** (1–2 hours)
-- Day 1: GPT-2 Block (combines everything)
-- Day 2: Speed run — re-implement all from scratch, timed
+| Week | Focus | Problems | Time |
+|:----:|-------|----------|:----:|
+| **1** | 🧱 Foundations | ReLU → Softmax → Linear → LayerNorm → BatchNorm → RMSNorm | 1–2 hrs |
+| **2** | 🧠 Attention Deep Dive | SDPA → MHA → Causal → GQA → Sliding Window → Linear Attn | 3–4 hrs |
+| **3** | 🏗️ Integration | GPT-2 Block + speed run (re-implement all, timed) | 1–2 hrs |
 
-## Architecture
+---
 
-```
+## 🏛️ Architecture
+
+```text
 ┌──────────────────────────────────────────┐
 │           Docker / Podman Container      │
 │                                          │
-│  JupyterLab (:8888)                     │
-│    ├── templates/  (reset on each run)  │
-│    ├── solutions/  (reference impl)     │
-│    ├── torch_judge/ (auto-grading)      │
-│    └── PyTorch (CPU), NumPy             │
+│  JupyterLab (:8888)                      │
+│    ├── templates/  (reset on each run)   │
+│    ├── solutions/  (reference impl)      │
+│    ├── torch_judge/ (auto-grading)       │
+│    └── PyTorch (CPU), NumPy              │
 │                                          │
 │  Judge checks:                           │
-│    ✓ Output correctness (allclose)      │
-│    ✓ Gradient flow (autograd)           │
-│    ✓ Shape consistency                  │
-│    ✓ Edge cases & numerical stability   │
+│    ✓ Output correctness (allclose)       │
+│    ✓ Gradient flow (autograd)            │
+│    ✓ Shape consistency                   │
+│    ✓ Edge cases & numerical stability    │
 └──────────────────────────────────────────┘
 ```
 
 Single container. Single port. No database. No frontend framework. No GPU.
 
-## Commands
+## 🛠️ Commands
 
 ```bash
 make run    # Build & start (http://localhost:8888)
@@ -147,7 +170,7 @@ make stop   # Stop the container
 make clean  # Stop + remove volumes + reset all progress
 ```
 
-## Adding Your Own Problems
+## 🧩 Adding Your Own Problems
 
 TorchCode uses auto-discovery — just drop a new file in `torch_judge/tasks/`:
 
@@ -164,17 +187,40 @@ TASK = {
 
 No registration needed. The judge picks it up automatically.
 
-## FAQ
+---
 
-**Q: Do I need a GPU?**
-A: No. Everything runs on CPU. The problems test correctness and understanding, not throughput.
+## ❓ FAQ
 
-**Q: Can I keep my solutions between runs?**
-A: Blank templates reset on every `make run` so you practice from scratch. Save your work under a different filename if you want to keep it.
+<details>
+<summary><b>Do I need a GPU?</b></summary>
+<br>
+No. Everything runs on CPU. The problems test correctness and understanding, not throughput.
+</details>
 
-**Q: How are solutions graded?**
-A: The judge runs your function against multiple test cases using `torch.allclose` for numerical correctness, verifies gradients flow properly via autograd, and checks edge cases specific to each operation.
+<details>
+<summary><b>Can I keep my solutions between runs?</b></summary>
+<br>
+Blank templates reset on every <code>make run</code> so you practice from scratch. Save your work under a different filename if you want to keep it.
+</details>
 
-## License
+<details>
+<summary><b>How are solutions graded?</b></summary>
+<br>
+The judge runs your function against multiple test cases using <code>torch.allclose</code> for numerical correctness, verifies gradients flow properly via autograd, and checks edge cases specific to each operation.
+</details>
 
-MIT
+<details>
+<summary><b>Who is this for?</b></summary>
+<br>
+Anyone preparing for ML/AI engineering interviews at top tech companies, or anyone who wants to deeply understand how PyTorch operations work under the hood.
+</details>
+
+---
+
+<div align="center">
+
+**Built for engineers who want to deeply understand what they build.**
+
+If this helped your interview prep, consider giving it a ⭐
+
+</div>
