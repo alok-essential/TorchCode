@@ -26,7 +26,7 @@ Practice implementing operators and architectures from scratch — the exact ski
 
 [![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-TorchCode-blue?style=flat-square&logo=github)](https://ghcr.io/duoan/torchcode)
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-TorchCode-blue?style=flat-square)](https://huggingface.co/spaces/duoan/TorchCode)
-![Problems](https://img.shields.io/badge/problems-15-orange?style=flat-square)
+![Problems](https://img.shields.io/badge/problems-37-orange?style=flat-square)
 ![GPU](https://img.shields.io/badge/GPU-not%20required-brightgreen?style=flat-square)
 
 </div>
@@ -41,7 +41,7 @@ TorchCode gives you a **structured practice environment** with:
 
 | | Feature | |
 |---|---|---|
-| 🧩 | **15 curated problems** | The most frequently asked PyTorch interview topics |
+| 🧩 | **37 curated problems** | The most frequently asked PyTorch interview topics |
 | ⚖️ | **Automated judge** | Correctness checks, gradient verification, and timing |
 | 🎨 | **Instant feedback** | Colored pass/fail per test case, just like competitive programming |
 | 💡 | **Hints when stuck** | Nudges without full spoilers |
@@ -76,39 +76,78 @@ Open **<http://localhost:8888>** — that's it. Works with both Docker and Podma
 
 ## 📋 Problem Set
 
+> **Frequency**: 🔥 = very likely in interviews, ⭐ = commonly asked, 💡 = emerging / differentiator
+
 ### 🧱 Fundamentals — "Implement X from scratch"
 
 The bread and butter of ML coding interviews. You'll be asked to write these without `torch.nn`.
 
-| # | Problem | What You'll Implement | Difficulty | Key Concepts |
-|:---:|---------|----------------------|:----------:|--------------|
-| 1 | ReLU | `relu(x)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | Activation functions, element-wise ops |
-| 2 | Softmax | `my_softmax(x, dim)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | Numerical stability, exp/log tricks |
-| 3 | Linear Layer | `SimpleLinear` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | `y = xW^T + b`, Kaiming init, `nn.Parameter` |
-| 4 | LayerNorm | `my_layer_norm(x, γ, β)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | Normalization, running stats, affine transform |
-| 7 | BatchNorm | `my_batch_norm(x, γ, β)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | Batch vs layer statistics, train/eval behavior |
-| 8 | RMSNorm | `rms_norm(x, weight)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | LLaMA-style norm, simpler than LayerNorm |
-| 15 | SwiGLU MLP | `SwiGLUMLP` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | Gated FFN, `SiLU(gate) * up`, LLaMA/Mistral-style |
+| # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
+|:---:|---------|----------------------|:----------:|:----:|--------------|
+| 1 | ReLU | `relu(x)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | 🔥 | Activation functions, element-wise ops |
+| 2 | Softmax | `my_softmax(x, dim)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | 🔥 | Numerical stability, exp/log tricks |
+| 16 | Cross-Entropy Loss | `cross_entropy_loss(logits, targets)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | 🔥 | Log-softmax, logsumexp trick |
+| 17 | Dropout | `MyDropout` (nn.Module) | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | 🔥 | Train/eval mode, inverted scaling |
+| 18 | Embedding | `MyEmbedding` (nn.Module) | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | 🔥 | Lookup table, `weight[indices]` |
+| 19 | GELU | `my_gelu(x)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | ⭐ | Gaussian error linear unit, `torch.erf` |
+| 20 | Kaiming Init | `kaiming_init(weight)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | ⭐ | `std = sqrt(2/fan_in)`, variance scaling |
+| 21 | Gradient Clipping | `clip_grad_norm(params, max_norm)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | ⭐ | Norm-based clipping, direction preservation |
+| 31 | Gradient Accumulation | `accumulated_step(model, opt, ...)` | ![Easy](https://img.shields.io/badge/Easy-4CAF50?style=flat-square) | 💡 | Micro-batching, loss scaling |
+| 3 | Linear Layer | `SimpleLinear` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | 🔥 | `y = xW^T + b`, Kaiming init, `nn.Parameter` |
+| 4 | LayerNorm | `my_layer_norm(x, γ, β)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | 🔥 | Normalization, running stats, affine transform |
+| 7 | BatchNorm | `my_batch_norm(x, γ, β)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | ⭐ | Batch vs layer statistics, train/eval behavior |
+| 8 | RMSNorm | `rms_norm(x, weight)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | ⭐ | LLaMA-style norm, simpler than LayerNorm |
+| 15 | SwiGLU MLP | `SwiGLUMLP` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | ⭐ | Gated FFN, `SiLU(gate) * up`, LLaMA/Mistral-style |
+| 22 | Conv2d | `my_conv2d(x, weight, ...)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | 🔥 | Convolution, unfold, stride/padding |
 
 ### 🧠 Attention Mechanisms — The heart of modern ML interviews
 
 If you're interviewing for any role touching LLMs or Transformers, expect at least one of these.
 
-| # | Problem | What You'll Implement | Difficulty | Key Concepts |
-|:---:|---------|----------------------|:----------:|--------------|
-| 5 | Scaled Dot-Product Attention | `scaled_dot_product_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | `softmax(QK^T/√d_k)V`, the foundation of everything |
-| 6 | Multi-Head Attention | `MultiHeadAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Parallel heads, split/concat, projection matrices |
-| 9 | Causal Self-Attention | `causal_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Autoregressive masking with `-inf`, GPT-style |
-| 10 | Grouped Query Attention | `GroupQueryAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | GQA (LLaMA 2), KV sharing across heads |
-| 11 | Sliding Window Attention | `sliding_window_attention(Q, K, V, w)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Mistral-style local attention, O(n·w) complexity |
-| 12 | Linear Attention | `linear_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Kernel trick, `φ(Q)(φ(K)^TV)`, O(n·d²) |
-| 14 | KV Cache Attention | `KVCacheAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Incremental decoding, cache K/V, prefill vs decode |
+| # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
+|:---:|---------|----------------------|:----------:|:----:|--------------|
+| 23 | Cross-Attention | `MultiHeadCrossAttention` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | ⭐ | Encoder-decoder, Q from decoder, K/V from encoder |
+| 5 | Scaled Dot-Product Attention | `scaled_dot_product_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 🔥 | `softmax(QK^T/√d_k)V`, the foundation of everything |
+| 6 | Multi-Head Attention | `MultiHeadAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 🔥 | Parallel heads, split/concat, projection matrices |
+| 9 | Causal Self-Attention | `causal_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 🔥 | Autoregressive masking with `-inf`, GPT-style |
+| 10 | Grouped Query Attention | `GroupQueryAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | ⭐ | GQA (LLaMA 2), KV sharing across heads |
+| 11 | Sliding Window Attention | `sliding_window_attention(Q, K, V, w)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | ⭐ | Mistral-style local attention, O(n·w) complexity |
+| 12 | Linear Attention | `linear_attention(Q, K, V)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Kernel trick, `φ(Q)(φ(K)^TV)`, O(n·d²) |
+| 14 | KV Cache Attention | `KVCacheAttention` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 🔥 | Incremental decoding, cache K/V, prefill vs decode |
+| 24 | RoPE | `apply_rope(q, k)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 🔥 | Rotary position embedding, relative position via rotation |
+| 25 | Flash Attention | `flash_attention(Q, K, V, block_size)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Tiled attention, online softmax, memory-efficient |
 
-### 🏗️ Full Architecture — Put it all together
+### 🏗️ Architecture & Adaptation — Put it all together
 
-| # | Problem | What You'll Implement | Difficulty | Key Concepts |
-|:---:|---------|----------------------|:----------:|--------------|
-| 13 | GPT-2 Block | `GPT2Block` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | Pre-norm, causal MHA + MLP (4x, GELU), residual connections |
+| # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
+|:---:|---------|----------------------|:----------:|:----:|--------------|
+| 26 | LoRA | `LoRALinear` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | ⭐ | Low-rank adaptation, frozen base + `BA` update |
+| 27 | ViT Patch Embedding | `PatchEmbedding` (nn.Module) | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | 💡 | Image → patches → linear projection |
+| 13 | GPT-2 Block | `GPT2Block` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | ⭐ | Pre-norm, causal MHA + MLP (4x, GELU), residual connections |
+| 28 | Mixture of Experts | `MixtureOfExperts` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | ⭐ | Mixtral-style, top-k routing, expert MLPs |
+
+### ⚙️ Training & Optimization
+
+| # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
+|:---:|---------|----------------------|:----------:|:----:|--------------|
+| 29 | Adam Optimizer | `MyAdam` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | ⭐ | Momentum + RMSProp, bias correction |
+| 30 | Cosine LR Scheduler | `cosine_lr_schedule(step, ...)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | ⭐ | Linear warmup + cosine annealing |
+
+### 🎯 Inference & Decoding
+
+| # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
+|:---:|---------|----------------------|:----------:|:----:|--------------|
+| 32 | Top-k / Top-p Sampling | `sample_top_k_top_p(logits, ...)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | 🔥 | Nucleus sampling, temperature scaling |
+| 33 | Beam Search | `beam_search(log_prob_fn, ...)` | ![Medium](https://img.shields.io/badge/Medium-FF9800?style=flat-square) | 🔥 | Hypothesis expansion, pruning, eos handling |
+| 34 | Speculative Decoding | `speculative_decode(target, draft, ...)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Accept/reject, draft model acceleration |
+
+### 🔬 Advanced — Differentiators
+
+| # | Problem | What You'll Implement | Difficulty | Freq | Key Concepts |
+|:---:|---------|----------------------|:----------:|:----:|--------------|
+| 35 | BPE Tokenizer | `SimpleBPE` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Byte-pair encoding, merge rules, subword splits |
+| 36 | INT8 Quantization | `Int8Linear` (nn.Module) | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Per-channel quantize, scale/zero-point, buffer vs param |
+| 37 | DPO Loss | `dpo_loss(chosen, rejected, ...)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Direct preference optimization, alignment training |
 
 ---
 
@@ -147,13 +186,14 @@ status()                    # Progress dashboard — solved / attempted / todo
 
 ## 📅 Suggested Study Plan
 
-> **Total: ~6–8 hours spread across 2–3 weeks. Perfect for interview prep on a deadline.**
+> **Total: ~12–16 hours spread across 3–4 weeks. Perfect for interview prep on a deadline.**
 
 | Week | Focus | Problems | Time |
 |:----:|-------|----------|:----:|
-| **1** | 🧱 Foundations | ReLU → Softmax → Linear → LayerNorm → BatchNorm → RMSNorm → SwiGLU MLP | 1–2 hrs |
-| **2** | 🧠 Attention Deep Dive | SDPA → MHA → Causal → GQA → Sliding Window → Linear Attn → KV Cache | 3–4 hrs |
-| **3** | 🏗️ Integration | GPT-2 Block + speed run (re-implement all, timed) | 1–2 hrs |
+| **1** | 🧱 Foundations | ReLU → Softmax → CE Loss → Dropout → Embedding → GELU → Linear → LayerNorm → BatchNorm → RMSNorm → SwiGLU MLP → Conv2d | 2–3 hrs |
+| **2** | 🧠 Attention Deep Dive | SDPA → MHA → Cross-Attn → Causal → GQA → KV Cache → Sliding Window → RoPE → Linear Attn → Flash Attn | 3–4 hrs |
+| **3** | 🏗️ Architecture + Training | GPT-2 Block → LoRA → MoE → ViT Patch → Adam → Cosine LR → Grad Clip → Grad Accumulation → Kaiming Init | 3–4 hrs |
+| **4** | 🎯 Inference + Advanced | Top-k/p Sampling → Beam Search → Speculative Decoding → BPE → INT8 Quant → DPO Loss + speed run | 3–4 hrs |
 
 ---
 
