@@ -380,6 +380,13 @@ Thanks to everyone who has contributed to TorchCode.
                     <sub><b>ThierryHJ</b></sub>
                 </a>
             </td>
+            <td align="center">
+                <a href="https://github.com/alok-essential">
+                    <img src="https://avatars.githubusercontent.com/u/215559321?v=4" width="100;" alt="alok-essential"/>
+                    <br />
+                    <sub><b>alok-essential</b></sub>
+                </a>
+            </td>
 		</tr>
 	<tbody>
 </table>
